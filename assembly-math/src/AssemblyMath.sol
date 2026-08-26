@@ -32,4 +32,28 @@ contract AssemblyMath {
             result := mod(a, b)
         }
     }
+
+    function min(uint256 a, uint256 b) external pure returns (uint256 result) {
+        assembly {
+            mstore(0x00, a)
+            mstore(0x20, b)
+
+            result := mload(mul(0x20, lt(b, a)))
+        }
+    }
+
+    function max(uint256 a, uint256 b) external pure returns (uint256 result) {
+        assembly {
+            mstore(0x00, a)
+            mstore(0x20, b)
+
+            result := mload(mul(0x20, gt(b, a)))
+        }
+    }
+
+    function average(uint256 a, uint256 b) external pure returns (uint256 result) {
+        assembly {
+            result := add(div(xor(a, b), 2), and(a, b))
+        }
+    }
 }

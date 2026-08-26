@@ -19,7 +19,6 @@ contract AssemblyMathTest is Test {
 
         uint256 result = assemblyMath.divide(a, b);
 
-        console2.log("result: ", result);
         assertEq(result, 5);
     }
 
@@ -29,7 +28,6 @@ contract AssemblyMathTest is Test {
 
         uint256 result = assemblyMath.divide(a, b);
 
-        console2.log("result: ", result);
         assertEq(result, 0);
     }
 
@@ -39,7 +37,6 @@ contract AssemblyMathTest is Test {
 
         uint256 result = assemblyMath.divide(a, b);
 
-        console2.log("result: ", result);
         assertEq(result, 0);
     }
 
@@ -48,8 +45,6 @@ contract AssemblyMathTest is Test {
         uint256 b;
 
         uint256 result = assemblyMath.divide(a, b);
-
-        console2.log("result: ", result);
 
         // @note: It's so weird, dividing any value by zero should throw error
         assertEq(result, b);
@@ -61,7 +56,6 @@ contract AssemblyMathTest is Test {
 
         uint256 result = assemblyMath.modulus(a, b);
 
-        console2.log("result: ", result);
         assertEq(result, 1);
     }
 
@@ -71,7 +65,6 @@ contract AssemblyMathTest is Test {
 
         uint256 result = assemblyMath.modulus(a, b);
 
-        console2.log("result: ", result);
         assertEq(result, 0);
     }
 
@@ -81,7 +74,6 @@ contract AssemblyMathTest is Test {
 
         uint256 result = assemblyMath.modulus(a, b);
 
-        console2.log("result: ", result);
         assertEq(result, 0);
     }
 
@@ -90,8 +82,6 @@ contract AssemblyMathTest is Test {
         uint256 b;
 
         uint256 result = assemblyMath.modulus(a, b);
-
-        console2.log("result: ", result);
 
         // @note: It's now really gone out-of-mind, mod any value with zero should throw exception
         assertEq(result, b);
@@ -103,7 +93,6 @@ contract AssemblyMathTest is Test {
 
         uint256 result = assemblyMath.add(a, b);
 
-        console2.log("result: ", result);
         assertEq(result, 12);
     }
 
@@ -113,7 +102,6 @@ contract AssemblyMathTest is Test {
 
         uint256 result = assemblyMath.add(a, b);
 
-        console2.log("result: ", result);
         assertEq(result, 0);
     }
 
@@ -123,7 +111,6 @@ contract AssemblyMathTest is Test {
 
         uint256 result = assemblyMath.subtract(a, b);
 
-        console2.log("result: ", result);
         assertEq(result, 9);
     }
 
@@ -133,7 +120,6 @@ contract AssemblyMathTest is Test {
 
         uint256 result = assemblyMath.subtract(a, b);
 
-        console2.log("result: ", result);
         assertEq(result, type(uint256).max);
     }
 
@@ -143,7 +129,6 @@ contract AssemblyMathTest is Test {
 
         uint256 result = assemblyMath.multiply(a, b);
 
-        console2.log("result: ", result);
         assertEq(result, 9);
     }
 
@@ -157,7 +142,96 @@ contract AssemblyMathTest is Test {
 
         uint256 result = assemblyMath.multiply(a, b);
 
-        console2.log("result: ", result);
         assertEq(result, expectedOutput);
+    }
+
+    function test_minFunction_useCase1() public view {
+        uint256 a = 3;
+        uint256 b = 7;
+
+        uint256 result = assemblyMath.min(a, b);
+
+        assertEq(result, a);
+    }
+
+    function test_minFunction_useCase2() public view {
+        uint256 a = 7;
+        uint256 b = 3;
+
+        uint256 result = assemblyMath.min(a, b);
+
+        assertEq(result, b);
+    }
+
+    function test_minFunction_useCase3() public view {
+        uint256 a = 7;
+        uint256 b = 7;
+
+        uint256 result = assemblyMath.min(a, b);
+
+        assertEq(result, b);
+    }
+
+    function test_maxFunction_useCase1() public view {
+        uint256 a = 3;
+        uint256 b = 7;
+
+        uint256 result = assemblyMath.max(a, b);
+
+        assertEq(result, b);
+    }
+
+    function test_maxFunction_useCase2() public view {
+        uint256 a = 7;
+        uint256 b = 3;
+
+        uint256 result = assemblyMath.max(a, b);
+
+        assertEq(result, a);
+    }
+
+    function test_maxFunction_useCase3() public view {
+        uint256 a = 7;
+        uint256 b = 7;
+
+        uint256 result = assemblyMath.max(a, b);
+
+        assertEq(result, a);
+    }
+
+    function test_averageFunction_useCase1() public view {
+        uint256 a = 4;
+        uint256 b = 6;
+
+        uint256 result = assemblyMath.average(a, b);
+
+        assertEq(result, (a + b) / 2);
+    }
+
+    function test_averageFunction_useCase2() public view {
+        uint256 a = 5;
+        uint256 b = 6;
+
+        uint256 result = assemblyMath.average(a, b);
+
+        assertEq(result, (a + b) / 2);
+    }
+
+    function test_averageFunction_useCase3() public view {
+        uint256 a = 0;
+        uint256 b = type(uint256).max;
+
+        uint256 result = assemblyMath.average(a, b);
+
+        assertEq(result, (a + b) / 2);
+    }
+
+    function test_averageFunction_useCase4() public view {
+        uint256 a = type(uint256).max;
+        uint256 b = type(uint256).max;
+
+        uint256 result = assemblyMath.average(a, b);
+
+        assertEq(result, type(uint256).max);
     }
 }
