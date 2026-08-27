@@ -5,5 +5,5 @@
 	path = assembly-math/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
 [submodule "assembly-array/lib/forge-std"]
-	path = assembly-math/lib/forge-std
+	path = assembly-array/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
