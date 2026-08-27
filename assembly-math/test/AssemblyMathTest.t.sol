@@ -234,4 +234,91 @@ contract AssemblyMathTest is Test {
 
         assertEq(result, type(uint256).max);
     }
+
+    function testFuzz_add(uint256 a, uint256 b) public view {
+        uint256 expectedResult;
+        unchecked {
+            expectedResult = a + b;
+        }
+
+        uint256 result = assemblyMath.add(a, b);
+
+        assertEq(result, expectedResult);
+    }
+
+    function testFuzz_subtract(uint256 a, uint256 b) public view {
+        uint256 expectedResult;
+        unchecked {
+            expectedResult = a - b;
+        }
+
+        uint256 result = assemblyMath.subtract(a, b);
+
+        assertEq(result, expectedResult);
+    }
+
+    function testFuzz_multiply(uint256 a, uint256 b) public view {
+        uint256 expectedResult;
+        unchecked {
+            expectedResult = a * b;
+        }
+
+        uint256 result = assemblyMath.multiply(a, b);
+
+        assertEq(result, expectedResult);
+    }
+
+    function testFuzz_divide(uint256 a, uint256 b) public view {
+        uint256 expectedResult;
+        unchecked {
+            if (b == 0) {
+                expectedResult = 0;
+            } else {
+                expectedResult = a / b;
+            }
+        }
+
+        uint256 result = assemblyMath.divide(a, b);
+
+        assertEq(result, expectedResult);
+    }
+
+    function testFuzz_modulus(uint256 a, uint256 b) public view {
+        uint256 expectedResult;
+        unchecked {
+            if (b == 0) {
+                expectedResult = 0;
+            } else {
+                expectedResult = a % b;
+            }
+        }
+
+        uint256 result = assemblyMath.modulus(a, b);
+
+        assertEq(result, expectedResult);
+    }
+
+    function testFuzz_min(uint256 a, uint256 b) public view {
+        uint256 expectedResult = a > b ? b : a;
+
+        uint256 result = assemblyMath.min(a, b);
+
+        assertEq(result, expectedResult);
+    }
+
+    function testFuzz_max(uint256 a, uint256 b) public view {
+        uint256 expectedResult = a > b ? a : b;
+
+        uint256 result = assemblyMath.max(a, b);
+
+        assertEq(result, expectedResult);
+    }
+
+    function testFuzz_average(uint256 a, uint256 b) public view {
+        uint256 expectedResult = (a & b) + ((a ^ b) / 2);
+
+        uint256 result = assemblyMath.average(a, b);
+
+        assertEq(result, expectedResult);
+    }
 }
