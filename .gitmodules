@@ -10,3 +10,6 @@
 [submodule "assembly-return/lib/forge-std"]
 	path = assembly-return/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "assembly-storage/lib/forge-std"]
+	path = assembly-storage/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
