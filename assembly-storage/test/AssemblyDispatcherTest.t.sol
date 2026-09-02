@@ -14,6 +14,7 @@ contract AssemblyDispatcherTest is Test {
     }
 
     function test_dispatcher_useCase1() public {
-        // @TODO: Test dispatcher logic...
+        bytes memory data = abi.encodeWithSignature("add(uint256,uint256)", 10, 20);
+        address(assemblyDispatcher).call(data);
     }
 }
